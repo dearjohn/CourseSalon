@@ -9,25 +9,26 @@
 
 <body>
 <!-- Here is Navabar-->
-<header class="navbar navbar-fixed-top navbar-inverse">
+<div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "sample app", '#', id: "logo" %>
-        <nav>
-          <ul class="nav pull-right">
-            <li><%= link_to "Home",    '#' %></li>
-            <li><%= link_to "Users",    '#' %></li>
-            <li><%= link_to "Courses", '#' %></li>
-          </ul>
-        </nav>
+      <a class="brand" href='#'>CourseSalon</a>
+      <ul class="nav">
+        <li class="active"><%= link_to "Home", '#' %></li>
+        <li><%= link_to "Users", '#' %></li>            <li><%= link_to "Courses", '#' %></li>
+      </ul>
+      <ul class="nav pull-right">
+        <li><%= link_to "Sign in", '#' %></li>
+      </ul>
     </div>
   </div>
-</header>
+</div>
 
 <!-- Here is the main page-->
 <%= yield %>
 
 <!-- Here is footer -->
+<hr>
 <footer>
   <p>&copy; 2013 John &middot; <a href="#">About</a> &middot; <a href="#">Blog</a></p>
 </footer>
