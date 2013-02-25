@@ -14,7 +14,8 @@
     <div class="container">
       <a class="brand" href='/'>CourseSalon</a>
       <ul class="nav">
-        <li class="active"><%= link_to "Home", root_path %></li>
+      <!-- 这里active还需要改进，让每一个当前页面都能够激活 <li class="active"><%= link_to "Home", root_path %></li> -->
+        <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Users", '#' %></li>            
         <li><%= link_to "Courses", '#' %></li>
       </ul>
