@@ -12,10 +12,11 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href='#'>CourseSalon</a>
+      <a class="brand" href='/'>CourseSalon</a>
       <ul class="nav">
-        <li class="active"><%= link_to "Home", '#' %></li>
-        <li><%= link_to "Users", '#' %></li>            <li><%= link_to "Courses", '#' %></li>
+        <li class="active"><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Users", '#' %></li>            
+        <li><%= link_to "Courses", '#' %></li>
       </ul>
       <ul class="nav pull-right">
         <li><%= link_to "Sign in", '#' %></li>
@@ -25,12 +26,15 @@
 </div>
 
 <!-- Here is the main page-->
-<%= yield %>
+<div class="container">
+      <%= yield %>
+</div>
 
 <!-- Here is footer -->
 <hr>
 <footer>
-  <p>&copy; 2013 John &middot; <a href="#">About</a> &middot; <a href="#">Blog</a></p>
+  <p>&copy; 2013 John &middot; <%= link_to "About", about_path %> &middot; <%= link_to "Blog", "http://www.readate.com" %>
+  </p>
 </footer>
 
 </body>
