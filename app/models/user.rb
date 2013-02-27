@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
+  
   attr_accessible :email, :name, :role, :password, :password_confirmation
 
-  validates :role, presence: true #二选一，这个写的不对, exclusion: { in: %w(0 1)}
   validates :name,  presence: true, length: { maximum: 50 }
   validates :password, presence: true, length: { minimum: 6 }
+
+  validates :role, presence: true#这一块仍未修复, :exclusion => { :in => %w(0 1),
+   :message => "role must be 0 or 1(0 for teacher / 1 for student)" }  
 
   #利用正则表达式来验证email的格式
   EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
