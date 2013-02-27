@@ -1,10 +1,35 @@
 <% provide(:title, 'Sing up') %>
- <input type="text" class="input-block-level" placeholder="Email address">
-        <input type="password" class="input-block-level" placeholder="Password">
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
-      </form>
 
-    </div> <!-- /container -->
+<!--这段代码试着用Rails的form_for改写一下-->
+<form accept-charset="UTF-8" action="/users" method="post" class="form-signin">
+    
+     <% if @user.errors.any? %>
+    <div class="alert alert-error">
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <h2 class="form-signin-heading">Sign up</h2>
+        
+    <!--这里总感觉不舒服，改成选择框从老师和学生两个选项中来选择-->
+    <label>Role: </label>
+    <input name="user[role]" type="text" class="input-block-level" placeholder="0 for Teacher / 1 for Student">
+    
+    <label>Name: </label>
+    <input name="user[name]" type="text" class="input-block-level" placeholder="less than 50 digits">
+    
+    <label>Email: </label>
+    <input name="user[email]" type="text" class="input-block-level" placeholder="xxx@gmail.com">
+    
+    <label>Password: </label>
+    <input name="user[password]"type="password" class="input-block-level" placeholder="at least 6 digits">
+
+    <label>Confirm: </label>
+	<input name="user[password_confirmation]"type="password" class="input-block-level" placeholder="confirm your password">
+    
+    <button class="btn btn-large btn-success" type="submit">Sign up</button>
+</form>

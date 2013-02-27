@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :role, :password, :password_confirmation
 
-  validates :role, presence: true
+  validates :role, presence: true #二选一，这个写的不对, exclusion: { in: %w(0 1)}
   validates :name,  presence: true, length: { maximum: 50 }
   validates :password, presence: true, length: { minimum: 6 }
 
