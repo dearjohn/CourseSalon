@@ -1,4 +1,5 @@
 CourseSalon::Application.routes.draw do
+  resources :users #使users具有REST风格
 
   root :to => 'static_pages#home'
   
