@@ -1,6 +1,6 @@
 <% provide(:title, 'Sing up') %>
 
-<!--这段代码试着用Rails的form_for改写一下-->
+<!--这段代码试着用Rails的form_for改写之后， placeholder显示问题没有解决-->
 <form accept-charset="UTF-8" action="/users" method="post" class="form-signin">
     
      <% if @user.errors.any? %>
@@ -14,19 +14,20 @@
   <% end %>
 
     <h2 class="form-signin-heading">Sign up</h2>
-        
-    <!--这里总感觉不舒服，改成选择框从老师和学生两个选项中来选择-->
-    <label>Role: </label>
-    <input name="user[role]" type="text" class="input-block-level" placeholder="0 for Teacher / 1 for Student">
     
+    <hr>
+    <label>I am a:</label>
+    <input type="radio" name="user[role]" value="0" class="btn btn-primary"> teacher</input>
+    <input type="radio" name="user[role]" value="1" class="btn btn-primary"/> student</input>
+
     <label>Name: </label>
-    <input name="user[name]" type="text" class="input-block-level" placeholder="less than 50 digits">
+    <input name="user[name]" type="text" class="input-block-level" placeholder="less than 30 digits">
     
     <label>Email: </label>
-    <input name="user[email]" type="text" class="input-block-level" placeholder="xxx@gmail.com">
+    <input name="user[email]" type="text" class="input-block-level" placeholder="xxx@xxx.com">
     
     <label>Password: </label>
-    <input name="user[password]"type="password" class="input-block-level" placeholder="at least 6 digits">
+    <input name="user[password]"type="password" class="input-block-level" placeholder="at least 5 digits">
 
     <label>Confirm: </label>
 	<input name="user[password_confirmation]"type="password" class="input-block-level" placeholder="confirm your password">
