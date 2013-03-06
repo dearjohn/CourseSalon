@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   		flash.now[:success] = "Hi, #{@user.name}. Have fun here!"
   		redirect_to @user
   	else
-  		flash.now[:info] = "Do it again :)"
   		render 'new'
   	end
   end
