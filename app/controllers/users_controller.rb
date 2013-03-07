@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(params[:user])
   	if @user.save
-  		flash.now[:success] = "Hi, #{@user.name}. Have fun here!"
+      UserMailer.signup_confirmation(@user).deliver
+      flash[:success] = "Hi, #{@user.name}. Have fun here!"
   		redirect_to @user
   	else
   		render 'new'
