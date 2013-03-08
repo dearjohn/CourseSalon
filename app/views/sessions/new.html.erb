@@ -1,0 +1,16 @@
+<% provide(:title, 'Log in') %>
+
+<div class="form-signin">
+	<%= form_tag sessions_path do %>
+	
+		<h2 class="form-signin-heading">Log in</h2>
+    
+		<%= label_tag :email %>
+		<%= text_field_tag :email, params[:email] %>
+
+		<%= label_tag :password %>
+		<%= password_field_tag :password, params[:password]%>
+
+		<button class="btn btn-large btn-success" type="submit">Log in</button>
+	<% end %>
+</div>
