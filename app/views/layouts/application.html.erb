@@ -18,9 +18,18 @@
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Users", '#' %></li>            
         <li><%= link_to "Courses", '#' %></li>
+        <li><%= link_to "Salons", '#' %></li>
       </ul>
       <ul class="nav pull-right">
-        <li><%= link_to "Sign in", '#' %></li>
+        <% if current_user %>
+          <li><%= link_to current_user.name, @user %></li>
+              <!--**这里千万要注意**，添加method为delete，否则会调用show方法\
+                  而session_path后面一定要传一个参数，原因未知。。。。-->
+          <li><%= link_to " Log out", session_path('current'), 
+                  method:"delete" %> </li>  
+        <% else %>
+          <li><%= link_to "Log in", login_path %></li>
+        <% end %>
       </ul>
     </div>
   </div>

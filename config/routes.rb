@@ -1,10 +1,12 @@
 CourseSalon::Application.routes.draw do
   resources :users #使users具有REST风格
+  resources :sessions
 
   root :to => 'static_pages#home'
   
   match '/about', to: 'static_pages#about'
   match '/signup', to: 'users#new'
+  match '/login', to: 'sessions#new'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
