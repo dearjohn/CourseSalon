@@ -11,6 +11,12 @@
 		<%= label_tag :password %>
 		<%= password_field_tag :password, params[:password]%>
 
+		<label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+		
 		<button class="btn btn-large btn-success" type="submit">Log in</button>
+		<p><%= link_to "forget password?", '#'%></p>
+
 	<% end %>
 </div>
