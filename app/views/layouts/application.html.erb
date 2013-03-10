@@ -13,18 +13,12 @@
   <div class="navbar-inner">
     <div class="container">
 
-      <div class="brand">
-        <% if current_user %>
-          <%= link_to "CourseSalon", @user %>
-        <% else  %>
-          <%= link_to "CourseSalon", root_url %>  
-        <% end %>
-      </div>
-
+      <a class="brand" href="/">CourseSalon</a>
+      
       <ul class="nav">
       <!-- 这里active还需要改进，让每一个当前页面都能够激活 <li class="active"><%= link_to "Home", root_path %></li> -->
         <% if current_user %>
-          <li>  <%= link_to "Home", @user %> </li>
+          <li>  <%= link_to "Home", current_user %> </li>
         <% else  %>
           <li> <%= link_to "Home", root_url %>   </li>
         <% end %>
@@ -34,7 +28,7 @@
       </ul>
       <ul class="nav pull-right">
         <% if current_user %>
-          <li><%= link_to current_user.name, @user %></li>
+          <li><%= link_to current_user.name, current_user %></li>
               <!--**这里千万要注意**，添加method为delete，否则会调用show方法\
                   而session_path后面一定要传一个参数，原因未知。。。。-->
           <li><%= link_to " Log out", session_path('current'), 
