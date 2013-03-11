@@ -10,9 +10,7 @@ private
 
   helper_method :current_user
 
-=begin 用来验证权限的authorize方法
   def authorize
   	redirect_to login_url, alert: "Not logged in." if current_user.nil?
   end
-=end
 end
