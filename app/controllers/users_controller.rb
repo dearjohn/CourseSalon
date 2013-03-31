@@ -42,7 +42,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page], :per_page => 10)
+    @users = User.paginate( page: params[:page], 
+      :per_page => 10, :order => 'created_at desc' ) #这里desc和asc控制升降
   end
 
 end
