@@ -1,5 +1,4 @@
-class User < ActiveRecord::Base
-  
+class User < ActiveRecord::Base 
   attr_accessible :email, :name, :role, :password, :password_confirmation
 
   validates :name,  presence: true, length: { maximum: 30 }
@@ -16,6 +15,12 @@ class User < ActiveRecord::Base
 
   #存入数据库之前做小写处理
   before_save { |user| user.email = email.downcase }
+  before_save :generate_auth_token
 
   has_secure_password  #现在rails中可以通过这一个方法做验证，先匹配用户输入，再匹配数据库中加密后的
+  
+  def generate_auth_token
+      self.auth_token = SecureRandom.urlsafe_base64
+  end
+
 end

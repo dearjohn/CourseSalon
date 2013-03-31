@@ -8,41 +8,80 @@
 </head>
 
 <body>
-<!-- Here is Navabar-->
-<div class="navbar navbar-inverse navbar-fixed-top">
+
+<!-- 这里是导航-->
+<div class="navbar navbar-inverse navbar-fixed-top static">
   <div class="navbar-inner">
     <div class="container">
+
+<!--这里自适应没有调试好
+ <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+-->
 
       <a class="brand" href="/">CourseSalon</a>
       
       <ul class="nav">
       <!-- 这里active还需要改进，让每一个当前页面都能够激活 <li class="active"><%= link_to "Home", root_path %></li> -->
+          <li class="divider-vertical"></li> 
         <% if current_user %>
           <li>  <%= link_to "Home", current_user %> </li>
         <% else  %>
           <li> <%= link_to "Home", root_url %>   </li>
         <% end %>
-      
+          <li class="divider-vertical"></li> 
+
         <li><%= link_to "Courses", '#' %></li>
-        <li><%= link_to "Salons   ", '#' %></li>
-        <li><%= link_to "   Toolbox", '#' %></li>
+          <li class="divider-vertical"></li> 
+        <li><%= link_to "Salons", '#' %></li>
+          <li class="divider-vertical"></li> 
+<!--这里是toolbox的下拉菜单-->  
+      <li class="dropdown">      
+        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <b>Toolbox</b><b class="caret"></b></a>
+              <ul class="dropdown-menu pull-right"><!--注意这里有个小陷阱：覆盖pull-left-->
+                <li><%= link_to "chat room", '#' %></li>
+                  <li class="divider"></li>
+                <li><%= link_to "more", '#' %></li>
+              </ul>
+        </li>
+      </li>    
+    </ul>
+<!--导航中部-搜索框-->
+<form class="navbar-search pull-left span2">
+  <input type="text" class="search-query" placeholder="Search">
+</form>
+
+<!--导航右侧-拉菜单-->      
+      <ul class="nav nav-pills pull-right">
+          <% if current_user %>
+            <li><%= link_to current_user.name, current_user %></li>
+            
+            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class=" icon-user icon-white"></i><b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "setting", '#' %></li>
+                <li class="divider"></li>
+                <li><%= link_to "messages", '#' %></li>
+                <li class="divider"></li>
+                  <li><%= link_to " Log out", logout_path, method: "delete" %> </li>  
+             </ul>
+            </li>
+          <% else %>
+            <li><%= link_to "Sign in", login_path %></li>
+          <% end %>
       </ul>
-      <ul class="nav pull-right">
-        <% if current_user %>
-          <li><%= link_to current_user.name, current_user %></li>
-              <!--**这里千万要注意**，添加method为delete，否则会调用show方法\
-                  而session_path后面一定要传一个参数，原因未知。。。。-->
-          <li><%= link_to " Log out", session_path('current'), 
-                  method:"delete" %> </li>  
-        <% else %>
-          <li><%= link_to "Log in", login_path %></li>
-        <% end %>
-      </ul>
+
     </div>
   </div>
 </div>
+<!--导航部分结束-->
 
-<!-- Here is the main page-->
+
+<!-- 这里是页面中间-主页面部分-->
 <div class="container">
   <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
@@ -51,10 +90,14 @@
   <%= yield %>
 </div>
 
-<!-- Here is footer -->
+
+<!-- 这里是footer -->
 <hr>
 <footer>
-  <center>&copy; 2013 John &middot; <%= link_to "About", about_path %> &middot; <%= link_to "Blog", "http://www.readate.com" %>
+  <center>
+       &copy;  2013  <%= link_to "Noff.us", "http://noff.us" %>   &middot; 
+    <%= link_to "Blog", "http://blog.noff.us" %>  &middot;    
+    <%= link_to "About", about_path %>
   </center>
 </footer>
 

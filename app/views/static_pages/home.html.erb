@@ -1,6 +1,49 @@
 <% provide(:title, 'Home') %>
 
 <div class="container-narrow">
+<br>
+<!--幻灯片 Carousel in Bootstrap-->
+   <div id="myCarousel" class="carousel slide">
+   
+    <!--右上角的指示器-->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Carousel items -->
+            <div class="carousel-inner">
+              <div class="active item img-rounded">
+                <center><%= image_tag("school.jpg") %></center>
+                <div class="carousel-caption">
+                  <font color="#fff"><h4>这是一个线上的校园</h4>
+                  <h5>在这里，老师可以创建课程，发布课程信息, 学生可以提交问题，跟踪课程。</h5></font>
+                </div>
+              </div>
+
+              <div class="item">
+                <center><%= image_tag("tweet.jpg") %></center>
+                <div class="carousel-caption">
+                  <font color="#fff"><h4>这是一个社交网络</h4>
+                  <h5>随时随地玩转微博，随时随地跟你的同学保持联系。</h5></font>
+                </div>
+              </div>
+
+              <div class="item">
+                <center><%= image_tag("forum.jpg") %></center>
+                <div class="carousel-caption">
+                  <font color="#fff"><h4>这是一个小圈子</h4>
+                  <h5>在这里，随意创建兴趣小组，跟你的圈中好友一起探讨人生吧</h5></font>
+                </div>
+              </div>
+
+              
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+<!--幻灯片部分完-->
 
       <div class="jumbotron">
         <h1>CourseSalon, kindle your online class!</h1>
@@ -12,20 +55,20 @@
 
       <div class="row-fluid marketing">
         <div class="span6">
-          <h4>课程</h4>
+          <h4><i class="icon-calendar"></i>课程</h4>
           <p>教师用户创建课程，发布课程信息。学生用户通过访问课程页面，查看课程信息。</p>
 
-          <h4>问答(后续功能)</h4>
-          <p>提供问答功能。学生在课程页面提问累计活跃积分，教师用户通过回答累计积分。</p>
+          <h4><i class="icon-question-sign"></i>问答</h4><p>提供问答功能。学生在课程页面提问累计活跃积分，教师用户通过回答累计积分。</p>
         </div>
 
         <div class="span6">
-          <h4>社交</h4>
-          <p>学生用户，教师用户之间可以进行社交，通过关注其他用户，得到其他用户发布的信息及更新。</p>
-
-          <h4>小组(后续功能)</h4>
+           <h4><i class="icon-camera"></i>社交</h4><p>学生用户，教师用户之间可以进行社交，通过关注其他用户，得到其他用户发布的信息及更新。</p>
+          
+          <h4><i class="icon-user"></i>小组</h4>
           <p>用户可以自行创建小组，组内提供讨论等功能。</p>
         </div>
 </div>
 
 <p class="pull-right"><a href="#">Back to top</a></p>
+
+

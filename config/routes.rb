@@ -7,7 +7,8 @@ CourseSalon::Application.routes.draw do
   match '/about', to: 'static_pages#about'
   match '/signup', to: 'users#new'
   match '/login', to: 'sessions#new'
-  
+  match '/logout', to: 'sessions#destroy', via: :delete
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

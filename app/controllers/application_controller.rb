@@ -1,13 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+private 
+	def current_user
+   		@current_user ||= User.find_by_auth_token( cookies[:auth_token]) if cookies[:auth_token]
+	end
 
-
-private
-  def current_user
-  	@current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
-  end
-
+#因为在Rails中，helper的方法是可见的，所以在这里要将Controller里的方法设置为helper方法
   helper_method :current_user
 
   def authorize
