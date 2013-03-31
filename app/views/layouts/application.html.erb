@@ -27,11 +27,8 @@
       <ul class="nav">
       <!-- 这里active还需要改进，让每一个当前页面都能够激活 <li class="active"><%= link_to "Home", root_path %></li> -->
           <li class="divider-vertical"></li> 
-        <% if current_user %>
-          <li>  <%= link_to "Home", current_user %> </li>
-        <% else  %>
-          <li> <%= link_to "Home", root_url %>   </li>
-        <% end %>
+  <!--这里取消判断，把判断放在root里面，登录显示首页，否则显示介绍页面-->
+          <li>  <%= link_to "Home", root_url %> </li>
           <li class="divider-vertical"></li> 
 
         <li><%= link_to "Users", users_path %></li>
