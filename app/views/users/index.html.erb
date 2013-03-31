@@ -15,7 +15,12 @@
                 <%= gravatar_for user %></div>
 
                 <div class="media-body">
-              		<h3 class="media-heading"><%= link_to user.name, user %></h3>
+              		<% if user.role == 0 %>
+                  <h3 class="media-heading"><%= link_to "Teacher: " + user.name, user %></h3>
+                  <% else %>
+                  <h3 class="media-heading"><%= link_to "Student: " + user.name, user %></h3>
+                  <% end %>
+                  <b>第 <%= user.id %> 位用户</b>
                 </div>
                 </li>
             <hr>
