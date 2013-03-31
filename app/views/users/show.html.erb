@@ -23,7 +23,7 @@
               <h4 class="media-heading">John Wong</h4>
                   我今天做了什么？我今天过的怎么样？最近毕业设计做的怎么样了？复试准备的怎么样了？
                 <!-- Nested media object 暂时不考虑-->
-              </div>
+            </div>
           </li>
           <hr>
           <li class="media">
@@ -34,22 +34,20 @@
               <h4 class="media-heading">John Wong</h4>
                   我今天做了什么？我今天过的怎么样？最近毕业设计做的怎么样了？复试准备的怎么样了？
                 <!-- Nested media object 暂时不考虑-->
-              </div>
+            </div>
           </li>
         </ul>
 
               </div><!--/span-->
           </div>  
         </div><!--/span-->
-        
-
 
 <!--这里是侧边栏-->
         <div class="span3">
           <div class="well sidebar-nav">
           <center>  <%= gravatar_for @user %> </center>
             <br>
-           <center> <%= @user.name %> </center>
+           <center><b><%= @user.name %></b>  </center>
 <!--这里是加关注-->            
 <% if current_user.id != @user.id %>
   <center>
