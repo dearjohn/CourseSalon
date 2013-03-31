@@ -34,9 +34,9 @@
         <% end %>
           <li class="divider-vertical"></li> 
 
-        <li><%= link_to "Courses", '#' %></li>
+        <li><%= link_to "Users", users_path %></li>
           <li class="divider-vertical"></li> 
-        <li><%= link_to "Salons", '#' %></li>
+        <li><%= link_to "Courses", '#' %></li>
           <li class="divider-vertical"></li> 
 <!--这里是toolbox的下拉菜单-->  
       <li class="dropdown">      
@@ -44,6 +44,7 @@
                 <b>Toolbox</b><b class="caret"></b></a>
               <ul class="dropdown-menu pull-right"><!--注意这里有个小陷阱：覆盖pull-left-->
                 <li><%= link_to "chat room", '#' %></li>
+                <li><%= link_to "Salons", '#' %></li>
                   <li class="divider"></li>
                 <li><%= link_to "more", '#' %></li>
               </ul>

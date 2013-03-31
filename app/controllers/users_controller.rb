@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authorize, only: [:edit, :update]
+  before_filter :authorize, only: [:edit, :update, :index]
   
   def new
     @user = User.new
@@ -40,4 +40,9 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
+  def index
+    @users = User.all
+  end
+
 end
