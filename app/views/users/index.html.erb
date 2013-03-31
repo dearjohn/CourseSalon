@@ -1,11 +1,28 @@
 <% provide(:title, 'All users') %>
-<h1>All users</h1>
+<br>
+<h1>Users in our site:</h1>
+	
 
-<ul class="users">
-  <% @users.each do |user| %>
-    <li>
-      <%= gravatar_for user %>
-      <%= link_to user.name, user %>
-    </li>
-  <% end %>
-</ul>
+	<%= will_paginate %>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">   
+ 	       <ul class="media-list">
+
+  	        <% @users.each do |user| %>
+    	        <li class="media">
+        	    <div class="pull-left img-circle" > 
+                <%= gravatar_for user %></div>
+
+                <div class="media-body">
+              		<h3 class="media-heading"><%= link_to user.name, user %></h3>
+                </div>
+                </li>
+            <hr>
+            <% end %>
+	
+	        </ul>
+	    </div>
+    </div>  
+   	
+   	<%= will_paginate %>

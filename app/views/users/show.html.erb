@@ -41,15 +41,13 @@
               </div><!--/span-->
           </div>  
         </div><!--/span-->
-        
-
 
 <!--这里是侧边栏-->
         <div class="span3">
           <div class="well sidebar-nav">
           <center>  <%= gravatar_for @user %> </center>
             <br>
-           <center> <%= @user.name %> </center>
+           <center><b><%= @user.name %></b>  </center>
 <!--这里是加关注-->            
 <% if current_user.id != @user.id %>
   <center>

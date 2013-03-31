@@ -68,7 +68,7 @@
                 <li class="divider"></li>
                 <li><%= link_to "messages", '#' %></li>
                 <li class="divider"></li>
-                  <li><%= link_to " Log out", logout_path, method: "delete" %> </li>  
+                  <li><%= link_to " Log out", logout_path, method: "delete", data: { confirm: "Sure to logout?" }%> </li>  
              </ul>
             </li>
           <% else %>
@@ -96,9 +96,9 @@
 <hr>
 <footer>
   <center>
-       &copy;  2013  <%= link_to "Noff.us", "http://noff.us" %>   &middot; 
-    <%= link_to "Blog", "http://blog.noff.us" %>  &middot;    
-    <%= link_to "About", about_path %>
+       &copy;<%= link_to "  Noff.us", "http://noff.us" %>   2013    &middot; 
+    <%= link_to "John's blog", "http://blog.noff.us" %>  &middot;    
+    <%= link_to "About us", about_path %>
   </center>
 </footer>
 
