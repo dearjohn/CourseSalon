@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
         cookies.permanent[:auth_token] = user.auth_token
       else
         cookies[:auth_token] = user.auth_token
-      redirect_to user
+      redirect_to root_url
       flash[:success] = "Logged in."
       end
     else

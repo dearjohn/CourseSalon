@@ -7,14 +7,14 @@
 <!--这里是Calendar+streamline-->        
         <div class="span9">       
           <div class="hero-unit">
-            <h1>Calendar</h1>
-            <p>Here is my Calendar</p>            
+            <h3>Hi there, I am <%= @user.name %>. </h3>
           </div> 
     <!--这里是微博部分-->  
         <div class="row-fluid">
             <div class="span10 offset1">
           
         <ul class="media-list">
+            <h3><%= @user.name %>'s tweets: </h3>
           <li class="media">
             <a class="pull-left img-circle" href="#">
             <%= gravatar_for @user %>
