@@ -8,8 +8,9 @@ private
 
 #因为在Rails中，helper的方法是可见的，所以在这里要将Controller里的方法设置为helper方法
   helper_method :current_user
+  helper_method :authorize
 
   def authorize
-  	redirect_to login_url, alert: "Not logged in." if current_user.nil?
+  	redirect_to login_url, alert: "Not logged in. Please login first." if current_user.nil?
   end
-end
+  end

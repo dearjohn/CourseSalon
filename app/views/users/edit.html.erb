@@ -1,0 +1,35 @@
+<% provide(:title, 'Update Profile') %>
+
+<div class="form-signin">
+  <%= form_for(@user) do |f| %>
+
+    <% if @user.errors.any? %>
+      <div class="alert alert-error">
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h2 class="form-signin-heading">Update profile</h2>
+    
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+
+    <%= f.label :Confirm %>
+    <%= f.password_field :password_confirmation %>
+
+    <%= f.submit "Update now", class: "btn btn-large btn-success" %>
+
+<!--修改头像目前还不能支持，只能修改邮箱地址-->
+
+  <% end %>
+</div>
