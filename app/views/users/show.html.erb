@@ -1,64 +1,47 @@
 <% provide(:title, @user.name) %>
-
-    <div class="container-fluid">
+  <div class="container-fluid">
     <div class="row-fluid">        
 
+<!--这里是头像信息+已发推特-->        
+  <div class="span9">       
+    <div class="hero-unit">
+      <%= gravatar_for @user %> 
+      Hi there, I am <b> <%= @user.name %>. </b>
+        <!--这里是加关注-->            
+        <% if current_user.id != @user.id %>
+            <button class="btn btn-small btn-primary" type="button">Follow</button>
+        <% else %>
+          (Current user.)
+        <% end %>
+    </div> 
 
-<!--这里是Calendar+streamline-->        
-        <div class="span9">       
-          <div class="hero-unit">
-            <h3>Hi there, I am <%= @user.name %>. </h3>
-          </div> 
-    <!--这里是微博部分-->  
-        <div class="row-fluid">
-            <div class="span10 offset1">
-          
-        <ul class="media-list">
-            <h3><%= @user.name %>'s tweets: </h3>
-          <li class="media">
-            <a class="pull-left img-circle" href="#">
-            <%= gravatar_for @user %>
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">John Wong</h4>
-                  我今天做了什么？我今天过的怎么样？最近毕业设计做的怎么样了？复试准备的怎么样了？
-                <!-- Nested media object 暂时不考虑-->
-            </div>
-          </li>
-          <hr>
-          <li class="media">
-            <a class="pull-left img-circle" href="#">
-            <%= gravatar_for @user %>
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">John Wong</h4>
-                  我今天做了什么？我今天过的怎么样？最近毕业设计做的怎么样了？复试准备的怎么样了？
-                <!-- Nested media object 暂时不考虑-->
-            </div>
-          </li>
-        </ul>
 
-              </div><!--/span-->
-          </div>  
-        </div><!--/span-->
+<!--这里是推特部分-->  
+    <div class="row-fluid">
+      <div class="span10 offset1">    
+        
 
-<!--这里是侧边栏-->
-        <div class="span3">
+    <% if @user.tweets.any? %>
+      <h3>I've post ( <%= pluralize(@user.tweets.count, ") tweet") %> : </h3>
+      <ol class="tweets">
+        <%= render @tweets %>
+      </ol>
+      <%= will_paginate @tweets %>
+    <% end %>
+
+      </div>
+    </div>  
+<!--微博推特结束-->    
+    </div>
+<!--左侧部分结束-->
+
+
+<!--这里是右侧边栏-->
+  <div class="span3">
           <div class="well sidebar-nav">
-          <center>  <%= gravatar_for @user %> </center>
-            <br>
-           <center><b><%= @user.name %></b>  </center>
-<!--这里是加关注-->            
-<% if current_user.id != @user.id %>
-  <center>
-    <button class="btn btn-small btn-primary" type="button">Follow</button>
-  </center>
-<% end %>
-            <br>    
-            <hr>
     <ul class="nav nav-list">
         <li class="nav-header"></li>
-          <li><span class="label">我的朋友</span></li>
+          <li><span class="label">朋友</span></li>
             <ul class="thumbnails">
           <li class="span5 thumbnail">
             <%= image_tag("tweet.jpg", class:"img-rounded")%>
@@ -69,7 +52,7 @@
       </ul> 
       <a href="#">more &raquo;</a>
         <hr>
-        <li><span class="label">我的课程</span></li>
+        <li><span class="label">课程</span></li>
                       <ul class="thumbnails">
           <li class="span5 thumbnail">
             <%= image_tag("tweet.jpg", class:"img-rounded")%>
@@ -79,7 +62,7 @@
           </li>
       </ul>
       <p><a href="#">more &raquo;</a></p>   <hr>
-        <li><span class="label">我的沙龙</span></li>
+        <li><span class="label">沙龙</span></li>
             <ul class="thumbnails">
           <li class="span5 thumbnail">
             <%= image_tag("tweet.jpg", class:"img-rounded")%>

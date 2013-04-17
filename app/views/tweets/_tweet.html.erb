@@ -1,0 +1,15 @@
+<ul class="media-list">
+    <li class="media">
+        <div class="media-body">
+            <h5 class="media-heading"><%= tweet.content %></h5>
+                <%= time_ago_in_words(tweet.created_at) %> ago.
+
+                 <% if current_user == @user %>
+    				<%= link_to "delete", tweet, method: :delete,
+                                     data: { confirm: "sure to delete?" },
+                                     title: tweet.content %>
+  				<% end %>
+        </div>
+    </li>
+    <hr>
+</ul>
