@@ -1,60 +1,60 @@
 <% provide(:title, 'Home') %>
 
-
 <!--用户登录之后的页面是相当于新浪微博一样的首页-->
 <% if signed_in? %>
-    <div class="container-fluid">
+  <div class="container-fluid">
     <div class="row-fluid">        
 
+<!--这里输入框-->        
+  <div class="span9">       
+      <%= form_for(@tweet) do |f| %>
+        <% if f.object.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            The form contains <%= pluralize(f.object.errors.count, "error") %>.
+          </div>
+          <ul>
+            <% f.object.errors.full_messages.each do |msg| %>
+              <li>* <%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
 
-<!--这里是Calendar+streamline-->        
-        <div class="span9">       
-          <div class="hero-unit">
-          这里发微博           
-          </div> 
-    <!--这里是信息流-->  
-        <div class="row-fluid">
-            <div class="span10 offset1">
-          
-        <ul class="media-list">
-          <li class="media">
-            <a class="pull-left img-circle" href="#">
-            <%= gravatar_for current_user %>
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">John Wong</h4>
-                  我今天做了什么？我今天过的怎么样？最近毕业设计做的怎么样了？复试准备的怎么样了？
-                <!-- Nested media object 暂时不考虑-->
-            </div>
-          </li>
-          <hr>
-          <li class="media">
-            <a class="pull-left img-circle" href="#">
-            <%= gravatar_for current_user %>
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">John Wong</h4>
-                  我今天做了什么？我今天过的怎么样？最近毕业设计做的怎么样了？复试准备的怎么样了？
-                <!-- Nested media object 暂时不考虑-->
-            </div>
-          </li>
-        </ul>
+        <div class="field">
+        <h4>New tweet:</h4>
+          <%= f.text_area :content, placeholder: "post here..." %>
+        </div>
+        <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+      <% end %>
 
-              </div><!--/span-->
-          </div>  
-        </div><!--/span-->
+<hr>
+<!--这里是信息流部分-->  
+    <div class="row-fluid">
+      <div class="span10 offset1">    
+        
+      </div>
+    </div>  
+<!--信息流部分结束-->    
 
-<!--这里是侧边栏-->
-        <div class="span3">
+
+    </div>
+<!--左侧部分结束-->
+
+
+
+
+
+<!--这里是右侧边栏-->
+  <div class="span3">
           <div class="well sidebar-nav">
           <center>  <%= gravatar_for current_user %> </center>
             <br>
            <center><b><%= current_user.name %></b>  </center>
-
-<!--这里可以补充一下，粉丝数量，参与的课程量，微博数量等-->
-
             <br>    
+            <center><b><%= pluralize(current_user.tweets.count, "tweet") %></b>  </center>
             <hr>
+
     <ul class="nav nav-list">
         <li class="nav-header"></li>
           <li><span class="label">我的朋友</span></li>

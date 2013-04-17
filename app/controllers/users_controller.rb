@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   def show
     authorize
     @user = User.find(params[:id])
+    @tweets = @user.tweets.paginate(page: params[:page],
+      :per_page => 10, :order => 'created_at desc')
   end
 
   def create
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
       flash[:success] = "Your profile has been updated!"
       redirect_to @user
     else
-      render 'new'
+      render 'edit'
     end
   end
 

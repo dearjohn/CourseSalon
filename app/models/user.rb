@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base 
   attr_accessible :email, :name, :role, :password, :password_confirmation
-
+  has_many :tweets, dependent: :destroy
+  
   validates :name,  presence: true, length: { maximum: 30 }
   validates :password, presence: true, length: { minimum: 5 }
-
   validates :role, presence: true#这一块仍未修复, :exclusion => { :in => %w(0 1),
   # :message => "role must be 0 or 1(0 for teacher / 1 for student)" }  
 
