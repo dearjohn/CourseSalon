@@ -1,6 +1,10 @@
 class StaticPagesController < ApplicationController
   def home
-  	@tweet = current_user.tweets.build if signed_in?
+  	if signed_in?
+      @tweet  = current_user.tweets.build
+      @feed_items = current_user.feed.paginate(page: params[:page],
+      	:per_page => 10, :order => 'created_at desc')
+    end
   end
 
   def about

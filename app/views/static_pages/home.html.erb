@@ -32,7 +32,13 @@
 <!--这里是信息流部分-->  
     <div class="row-fluid">
       <div class="span10 offset1">    
+        <h4>Streamline:</h4>
         
+        <% if @feed_items.any? %>
+          <%= render partial: 'tweets/feed_item', collection: @feed_items %>
+          <%= will_paginate @feed_items %>
+        <% end %>
+
       </div>
     </div>  
 <!--信息流部分结束-->    

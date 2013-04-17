@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
       self.auth_token = SecureRandom.urlsafe_base64
   end
 
+  def feed
+    tweets
+  end
+
 end

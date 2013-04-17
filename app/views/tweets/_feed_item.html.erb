@@ -1,0 +1,17 @@
+<ul class="media-list">
+    <li class="media">
+        <div class="pull-left img-circle">
+          <%= link_to gravatar_for(feed_item.user), feed_item.user %>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading"><%= link_to feed_item.user.name, feed_item.user %></h4>
+
+                <p>  <%= feed_item.content %> </p>
+            
+                <i>  <%= time_ago_in_words(feed_item.created_at) %> ago.
+                </i>
+        </div>
+    </li>
+</ul>
+
+<hr>
