@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    tweets
+    Tweet.from_users_followed_by(self)
   end
 
   def follow!(user)
