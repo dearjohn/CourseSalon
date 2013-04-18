@@ -1,7 +1,15 @@
 class User < ActiveRecord::Base 
   attr_accessible :email, :name, :role, :password, :password_confirmation
   has_many :tweets, dependent: :destroy
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship",
+                                   dependent:   :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
   
+
+
   validates :name,  presence: true, length: { maximum: 30 }
   validates :password, presence: true, length: { minimum: 5 }
   validates :role, presence: true#这一块仍未修复, :exclusion => { :in => %w(0 1),
@@ -27,4 +35,15 @@ class User < ActiveRecord::Base
     tweets
   end
 
+  def follow!(user)
+    relationships.create!(followed_id: user.id)
+  end
+
+  def following?(user)
+    relationships.find_by_followed_id(user.id)
+  end
+
+  def unfollow!(user)
+    relationships.find_by_followed_id(user.id).destroy
+  end
 end

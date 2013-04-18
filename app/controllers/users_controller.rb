@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authorize, only: [:edit, :update, :index]
+  before_filter :authorize, only: [:edit, :update, :index, :following, :followers]
   
   def new
     @user = User.new
@@ -48,4 +48,17 @@ class UsersController < ApplicationController
       :per_page => 10, :order => 'created_at desc' ) #这里desc和asc控制升降
   end
 
+  def following
+    @title = "Users i'm following : "
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'follow_details'
+  end
+
+  def followers
+    @title = "My followers : "
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'follow_details'
+  end
 end
