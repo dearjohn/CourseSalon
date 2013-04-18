@@ -1,54 +1,28 @@
-<% provide(:title, 'User center') %>
+<% provide(:title, 'Course center') %>
 
-<!--用户中心页面-->
+<!--教师用户可以创建课程-->
 <div class="container-fluid">
   <div class="row-fluid">        
 
-<!--这里显示全部用户信息-->        
+<!--这里是创建课程页面-->        
   <div class="span9">       
     <div class="hero-unit">
-        By now, there are <h3 class="label"><%= @users.count%></h3> users in our site.
-        <a class="btn btn-large btn-success" href="#调用发送微博接口！">Invite your friend!</a>
+        <% if current_user.role == 0 %>
+        教师用户<a class="btn btn-large btn-success" href="#">创建课程！</a>
+        <% else %>
+        <h3>选择你喜欢的课程，赶紧加入吧！</h3>
+        <% end %>
     </div> 
 
 <hr>
-<!--这里是用户列表部分-->  
+<!--这里是信息流部分-->  
     <div class="row-fluid">
       <div class="span10 offset1">    
-<h3>Users:</h3>
-
-  <%= will_paginate %>
-
-    <div class="row-fluid">
-        <div class="span10 offset1">   
-         <ul class="media-list">
-
-            <% @users.each do |user| %>
-              <li class="media">
-              <div class="pull-left img-circle" > 
-                <%= gravatar_for user %></div>
-
-                <div class="media-body">
-                  <% if user.role == 0 %>
-                  <h3 class="media-heading"><%= link_to "Teacher: " + user.name, user %></h3>
-                  <% else %>
-                  <h3 class="media-heading"><%= link_to "Student: " + user.name, user %></h3>
-                  <% end %>
-                  <b>第 <%= user.id %> 位用户</b>
-                </div>
-                </li>
-            <hr>
-            <% end %>
-  
-          </ul>
-      </div>
-    </div>  
-    
-    <%= will_paginate %>
+        <h4>课程列表:</h4>
 
       </div>
     </div>  
-<!--课程列表部分结束-->    
+<!--信息流部分结束-->    
 
   </div>
 <!--左侧部分结束-->
@@ -128,5 +102,3 @@
       
       </div><!--/row-->
     </div>
-
-

@@ -9,12 +9,12 @@
       Hi there, I am <b> <%= @user.name %>. </b>
       <br>
                     <a href="<%= following_user_path(@user) %>">
-                    <strong><%= @user.followed_users.count %></strong>
+                    <strong class="label label-info"><%= @user.followed_users.count %></strong>
                     following
                     </a>
                     | 
                     <a href="<%= followers_user_path(@user) %>">
-                    <strong><%= @user.followers.count %></strong>
+                    <strong class="label label-info"><%= @user.followers.count %></strong>
                     followers
                     </a>
         <!--这里是加关注-->      
