@@ -7,6 +7,7 @@ CourseSalon::Application.routes.draw do
   resources :sessions
   resources :tweets
   resources :relationships, only: [:create, :destroy]
+  resources :courses
   
   root :to => 'static_pages#home'
   

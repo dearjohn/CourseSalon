@@ -61,12 +61,12 @@
             <center><b><%= pluralize(current_user.tweets.count, "tweet") %></b>  </center>
                     <% @user ||= current_user %>
                     <a href="<%= following_user_path(@user) %>">
-                    <strong><%= @user.followed_users.count %></strong>
+                    <strong class="label label-info"><%= @user.followed_users.count %></strong>
                     following
                     </a>
                     | 
                     <a href="<%= followers_user_path(@user) %>">
-                    <strong><%= @user.followers.count %></strong>
+                    <strong class="label label-info"><%= @user.followers.count %></strong>
                     followers
                     </a>
             <hr>
