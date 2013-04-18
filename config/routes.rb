@@ -1,7 +1,12 @@
 CourseSalon::Application.routes.draw do
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :sessions
   resources :tweets
+  resources :relationships, only: [:create, :destroy]
   
   root :to => 'static_pages#home'
   

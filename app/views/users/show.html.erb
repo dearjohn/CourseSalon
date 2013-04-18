@@ -7,11 +7,32 @@
     <div class="hero-unit">
       <%= gravatar_for @user %> 
       Hi there, I am <b> <%= @user.name %>. </b>
-        <!--这里是加关注-->            
-        <% if current_user.id != @user.id %>
-            <button class="btn btn-small btn-primary" type="button">Follow</button>
+      <br>
+                    <a href="<%= following_user_path(@user) %>">
+                    <strong><%= @user.followed_users.count %></strong>
+                    following
+                    </a>
+                    | 
+                    <a href="<%= followers_user_path(@user) %>">
+                    <strong><%= @user.followers.count %></strong>
+                    followers
+                    </a>
+        <!--这里是加关注-->      
+        <% if current_user == @user %>
+        <br>
+        <strong>Current User!</strong>
         <% else %>
-          (Current user.)
+              <% if current_user.following?(@user) %>
+                    <%= form_for(current_user.relationships.find_by_followed_id(@user),
+                     html: { method: :delete }) do |f| %>
+                    <%= f.submit "Unfollow", class: "btn btn-large" %>
+                    <% end %>
+              <% else %>
+                      <%= form_for(current_user.relationships.build(followed_id: @user.id)) do |f| %>
+                      <div><%= f.hidden_field :followed_id %></div>
+                      <%= f.submit "Follow Me !", class: "btn btn-large btn-primary" %>
+                      <% end %>
+              <% end %>
         <% end %>
     </div> 
 
@@ -41,7 +62,7 @@
           <div class="well sidebar-nav">
     <ul class="nav nav-list">
         <li class="nav-header"></li>
-          <li><span class="label">朋友</span></li>
+          <li><span class="label">关注（<%= @user.followed_users.count %>）</span></li>
             <ul class="thumbnails">
           <li class="span5 thumbnail">
             <%= image_tag("tweet.jpg", class:"img-rounded")%>
@@ -50,9 +71,9 @@
             <%= image_tag("school.jpg", class:"img-rounded")%>
           </li>
       </ul> 
-      <a href="#">more &raquo;</a>
+      <a href="<%= following_user_path(@user) %>">more &raquo;</a>
         <hr>
-        <li><span class="label">课程</span></li>
+        <li><span class="label">粉丝（<%= @user.followers.count %>）</span></li>
                       <ul class="thumbnails">
           <li class="span5 thumbnail">
             <%= image_tag("tweet.jpg", class:"img-rounded")%>
@@ -61,7 +82,18 @@
             <%= image_tag("school.jpg", class:"img-rounded")%>
           </li>
       </ul>
-      <p><a href="#">more &raquo;</a></p>   <hr>
+      <p><a href="<%= followers_user_path(@user) %>">more &raquo;</a></p>   <hr>
+        <li><span class="label">课程</span></li>
+            <ul class="thumbnails">
+          <li class="span5 thumbnail">
+            <%= image_tag("tweet.jpg", class:"img-rounded")%>
+          </li>
+          <li class="span5 thumbnail">
+            <%= image_tag("school.jpg", class:"img-rounded")%>
+          </li>
+      </ul> 
+      <p><a href="#">more &raquo;</a></p>
+            <p><a href="#">more &raquo;</a></p>   <hr>
         <li><span class="label">沙龙</span></li>
             <ul class="thumbnails">
           <li class="span5 thumbnail">
@@ -72,6 +104,7 @@
           </li>
       </ul> 
       <p><a href="#">more &raquo;</a></p>
+
     </ul>
           
 

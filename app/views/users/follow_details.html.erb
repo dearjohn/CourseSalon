@@ -1,0 +1,33 @@
+<% provide(:title, @title) %>
+
+    <h3><%= @title %></h3>
+
+
+    <% if @users.any? %>
+    <div class="row-fluid">
+        <div class="span10 offset1">   
+         <ul class="media-list">
+
+            <% @users.each do |user| %>
+              <li class="media">
+              <div class="pull-left img-circle" > 
+                <%= gravatar_for user %></div>
+
+                <div class="media-body">
+                  <% if user.role == 0 %>
+                  <h3 class="media-heading"><%= link_to "Teacher: " + user.name, user %></h3>
+                  <% else %>
+                  <h3 class="media-heading"><%= link_to "Student: " + user.name, user %></h3>
+                  <% end %>
+                </div>
+                </li>
+            <hr>
+            <% end %>
+  
+          </ul>
+      </div>
+    </div>  
+    
+    <%= will_paginate %>
+
+    <% end %>
