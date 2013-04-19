@@ -1,7 +1,124 @@
 <% provide(:title, @course.name) %>
 
-<h1> <%= @course.name %></h1>
-<%= @course.intro %>
-<%= @course.user.name %>
+<!--展示某个课程的页面-->
+<div class="container-fluid">
+  <div class="row-fluid">        
 
-<%= @current_user.courses.count %>
+<!--这里是课程基本信息页面-->        
+  <div class="span9">       
+    <div class="hero-unit">
+        <h3 ><%= @course.name %></h3> by <div class="label"><%= @course.user.name %></div>
+        <br>
+        <p><%= @course.intro %></p>
+    </div> 
+
+<hr>
+<!--这里是课程资料部分-->  
+    <div class="row-fluid">
+      <div class="span10 offset1">    
+
+
+      </div>
+    </div>  
+<!--课程资料部分结束-->    
+
+  </div>
+<!--左侧部分结束-->
+
+
+
+
+
+<!--这里是右侧边栏-->
+  <div class="span3">
+          <div class="well sidebar-nav">
+          <center>  <%= gravatar_for current_user %> </center>
+            <br>
+           <center><b><%= current_user.name %></b>  </center>
+            <br>    
+
+                    <% @user ||= current_user %>
+                    <a href="<%= following_user_path(current_user) %>">
+                    <strong class="label label-info"><%= @user.followed_users.count %></strong>
+                    following
+                    </a>
+                    | 
+                    <a href="<%= followers_user_path(current_user) %>">
+                    <strong class="label label-info"><%= current_user.followers.count %></strong>
+                    followers
+                    </a>
+                    <br>
+
+                    <a href="<%= user_path(current_user) %>">
+                    <strong class="label label-info"><%= current_user.tweets.count %></strong>
+                    tweet(s)
+                    </a>
+                    <hr>
+
+                  <% if current_user.role == 0 %>
+                    <div class="label label-info">教师用户</div>
+                    <br>
+                    <!--这里的href有一个小陷阱-->
+                    <a class="btn btn-large btn-success" href="<%= root_url %>courses/new">创建课程！</a>
+                    <br>
+                    <a class="btn btn-large btn-primary" href="#">管理课程！</a>
+                    
+                    <% else %>
+                    <div class="label label-info">学生用户</div>
+                    <br>
+                    <a class="btn btn-large btn-primary" href="#">管理课程！</a>
+                  <% end %>
+
+            <hr>
+
+    <ul class="nav nav-list">
+        <li class="nav-header"></li>
+          <li><span class="label">我的关注（<%= current_user.followed_users.count %>）</span></li>
+            <ul class="thumbnails">
+          <li class="span5 thumbnail">
+            <%= image_tag("tweet.jpg", class:"img-rounded")%>
+          </li>
+          <li class="span5 thumbnail">
+            <%= image_tag("school.jpg", class:"img-rounded")%>
+          </li>
+      </ul> 
+      <a href="<%= following_user_path(current_user) %>">more &raquo;</a>
+        <hr>
+        <li><span class="label">我的粉丝（<%= current_user.followers.count %>）</span></li>
+                      <ul class="thumbnails">
+          <li class="span5 thumbnail">
+            <%= image_tag("tweet.jpg", class:"img-rounded")%>
+          </li>
+          <li class="span5 thumbnail">
+            <%= image_tag("school.jpg", class:"img-rounded")%>
+          </li>
+      </ul>
+      <p><a href="<%= followers_user_path(current_user) %>">more &raquo;</a></p>   <hr>
+        <li><span class="label">我的课程</span></li>
+            <ul class="thumbnails">
+          <li class="span5 thumbnail">
+            <%= image_tag("tweet.jpg", class:"img-rounded")%>
+          </li>
+          <li class="span5 thumbnail">
+            <%= image_tag("school.jpg", class:"img-rounded")%>
+          </li>
+      </ul> 
+      <p><a href="#">more &raquo;</a></p>   <hr>
+        <li><span class="label">我的沙龙</span></li>
+            <ul class="thumbnails">
+          <li class="span5 thumbnail">
+            <%= image_tag("tweet.jpg", class:"img-rounded")%>
+          </li>
+          <li class="span5 thumbnail">
+            <%= image_tag("school.jpg", class:"img-rounded")%>
+          </li>
+      </ul> 
+      <p><a href="#">more &raquo;</a></p>
+    </ul>
+          
+
+          </div><!--/.well -->
+        </div><!--/span-->
+      
+      </div><!--/row-->
+    </div>
