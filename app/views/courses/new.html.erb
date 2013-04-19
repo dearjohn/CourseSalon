@@ -1,1 +1,22 @@
-<% provide(:title, 'Sing up') %>
+<% provide(:title, 'New Course') %>
+      <%= form_for(@course) do |f| %>
+        <% if f.object.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            The form contains <%= pluralize(f.object.errors.count, "error") %>.
+          </div>
+          <ul>
+            <% f.object.errors.full_messages.each do |msg| %>
+              <li>* <%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+
+        <div class="field">
+        <h4>New Course:</h4>
+		    <%= f.text_field :name, placeholder: "Course name" %><br>
+          	<%= f.text_area :intro, placeholder: "Introduce the course here..." %>
+        </div>
+        <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+      <% end %>

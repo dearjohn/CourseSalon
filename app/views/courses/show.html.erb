@@ -1,1 +1,7 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, @course.name) %>
+
+<h1> <%= @course.name %></h1>
+<%= @course.intro %>
+<%= @course.user.name %>
+
+<%= @current_user.courses.count %>

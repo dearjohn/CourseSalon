@@ -8,9 +8,9 @@
   <div class="span9">       
     <div class="hero-unit">
         <% if current_user.role == 0 %>
-        教师用户<a class="btn btn-large btn-success" href="#">创建课程！</a>
+        教师用户，<a class="btn btn-large btn-success" href="courses/new">创建课程！</a> <a class="btn btn-large btn-primary" href="#">管理课程！</a>
         <% else %>
-        <h3>选择你喜欢的课程，赶紧加入吧！</h3>
+        <h3>学生用户，<a class="btn btn-large btn-primary" href="#">管理课程！</a></h3>
         <% end %>
     </div> 
 
