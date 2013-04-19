@@ -7,18 +7,46 @@
 <!--这里是创建课程页面-->        
   <div class="span9">       
     <div class="hero-unit">
-        <% if current_user.role == 0 %>
-        教师用户<a class="btn btn-large btn-success" href="#">创建课程！</a>
-        <% else %>
-        <h3>选择你喜欢的课程，赶紧加入吧！</h3>
-        <% end %>
+        By now, there are <h3 class="label"><%= @courses.count %></h3> courses in our site.
+        <a class="btn btn-large btn-success" href="#调用发送微博接口！">Invite your teacher!</a>
     </div> 
 
 <hr>
 <!--这里是信息流部分-->  
     <div class="row-fluid">
       <div class="span10 offset1">    
-        <h4>课程列表:</h4>
+<h3>Courses:</h3>
+
+  <%= will_paginate %>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">   
+         <ul class="media-list">
+
+            <% @courses.each do |course| %>
+              <li class="media">
+              <div class="pull-left img-circle" > 
+                <%= gravatar_for course.user %></div>
+
+                <div class="media-body">
+                 
+                  <h3 class="media-heading ">
+                    <div class="label label-info"><%= course.user.name %></div> 
+                    <%= link_to course.name, course %>
+                  </h3>
+                 
+                  <b>第 <%= course.id %> 个课程</b>
+                </div>
+                </li>
+            <hr>
+            <% end %>
+  
+          </ul>
+      </div>
+    </div>  
+    
+    <%= will_paginate %>
+
 
       </div>
     </div>  
@@ -38,7 +66,7 @@
             <br>
            <center><b><%= current_user.name %></b>  </center>
             <br>    
-            <center><b><%= pluralize(current_user.tweets.count, "tweet") %></b>  </center>
+
                     <% @user ||= current_user %>
                     <a href="<%= following_user_path(current_user) %>">
                     <strong class="label label-info"><%= @user.followed_users.count %></strong>
@@ -49,6 +77,27 @@
                     <strong class="label label-info"><%= current_user.followers.count %></strong>
                     followers
                     </a>
+                    <br>
+
+                    <a href="<%= user_path(current_user) %>">
+                    <strong class="label label-info"><%= current_user.tweets.count %></strong>
+                    tweet(s)
+                    </a>
+                    <hr>
+
+                  <% if current_user.role == 0 %>
+                    <div class="label label-info">教师用户</div>
+                    <br>
+                    <a class="btn btn-large btn-success" href="courses/new">创建课程！</a>
+                    <br>
+                    <a class="btn btn-large btn-primary" href="#">管理课程！</a>
+                    
+                    <% else %>
+                    <div class="label label-info">学生用户</div>
+                    <br>
+                    <a class="btn btn-large btn-primary" href="#">管理课程！</a>
+                  <% end %>
+
             <hr>
 
     <ul class="nav nav-list">
