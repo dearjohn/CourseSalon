@@ -1,5 +1,7 @@
-class StaticPagesController < ApplicationController
+class PagesController < ApplicationController
+  
   def home
+  	#这里提供给home页面发tweet的模板
   	if signed_in?
       @tweet  = current_user.tweets.build
       @feed_items = current_user.feed.paginate(page: params[:page],

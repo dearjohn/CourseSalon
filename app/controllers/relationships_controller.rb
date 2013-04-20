@@ -1,6 +1,7 @@
 class RelationshipsController < ApplicationController
   before_filter :authorize
 
+  #关注的列表relationships的操作借鉴tutorial的实现
   def create
     @user = User.find(params[:relationship][:followed_id])
     current_user.follow!(@user)

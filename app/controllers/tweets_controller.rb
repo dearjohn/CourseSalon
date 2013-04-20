@@ -8,11 +8,11 @@ class TweetsController < ApplicationController
       redirect_to root_url
     else
       @feed_items = []
-      render 'static_pages/home'
+      render 'pages/home'
     end
   end
 
-  #Tutorial中说这种删除方法不安全？
+  #Tutorial中说这种删除方法不安全？如何改进
   def destroy
     current_user.tweets.find_by_id(params[:id]).destroy
     redirect_to root_url
