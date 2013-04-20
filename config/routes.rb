@@ -9,9 +9,9 @@ CourseSalon::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :courses
   
-  root :to => 'static_pages#home'
+  root :to => 'pages#home'
   
-  match '/about', to: 'static_pages#about'
+  match '/about', to: 'pages#about'
   match '/signup', to: 'users#new'
   match '/login', to: 'sessions#new'
   match '/logout', to: 'sessions#destroy', via: :delete
