@@ -15,6 +15,7 @@ CourseSalon::Application.routes.draw do
   match '/signup', to: 'users#new'
   match '/login', to: 'sessions#new'
   match '/logout', to: 'sessions#destroy', via: :delete
+  match '/chatroom', to: 'messages#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
